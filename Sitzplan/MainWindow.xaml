@@ -1,0 +1,40 @@
+﻿<Window x:Class="Sitzplan.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sitzplan"
+        mc:Ignorable="d"
+        Title="Sitzplan" Height="350" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0" Text="Freie Teilnehmer" Margin="10" FontWeight="Bold" />
+        <TextBlock Grid.Column="1" Text="Freie Plätze" Margin="10" FontWeight="Bold" />
+        <TextBlock Grid.Column="2" Text="Gesetzte Teilnehmer" Margin="10" FontWeight="Bold" />
+
+        <ListBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding FreeParticipants}" 
+                 DisplayMemberPath="Name" 
+                 SelectedItem="{Binding SelectedFreeParticipant}" Margin="10" />
+
+        <ListBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding FreeSeats}" 
+                 SelectedItem="{Binding SelectedFreeSeat}" Margin="10" />
+
+        <ListBox Grid.Column="2" Grid.Row="1" ItemsSource="{Binding SeatedParticipants}" 
+                 DisplayMemberPath="DisplayText" 
+                 SelectedItem="{Binding SelectedSeatedParticipant}" Margin="10" />
+
+        <StackPanel Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Content="&gt;&gt;" Command="{Binding SetCommand}" Margin="5" Width="50" />
+            <Button Content="&lt;&lt;" Command="{Binding ReleaseCommand}" Margin="5" Width="50" />
+        </StackPanel>
+    </Grid>
+</Window>
